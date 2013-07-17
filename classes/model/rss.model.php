@@ -28,7 +28,6 @@ class Model_Rss extends \Fuel\Core\Model {
         }
     }
 
-    //print $num_of_posts;
     static function find($enhancer_args) {
         static::get_rss_from_url($enhancer_args['rssurl']);
         static::get_rssversion();
