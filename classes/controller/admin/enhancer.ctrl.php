@@ -18,6 +18,9 @@ class Controller_Admin_Enhancer extends \Nos\Controller_Admin_Enhancer
         if (empty($args)) {
             $args = $_POST;
         }
+        $args['rssurl'] = filter_var($args['rssurl'], FILTER_VALIDATE_URL);
+        $args['num_of_posts'] = filter_var($args['num_of_posts'], FILTER_VALIDATE_INT);
+
         parent::action_save($args);
     }
 }

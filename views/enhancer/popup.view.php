@@ -2,7 +2,7 @@
 
 $config = \Config::load('ounziw_rss::controller/front', true);
 $modelconfig = \Config::load('ounziw_rss::model/front', true);
-$rssurl = filter_var(\Arr::get($enhancer_args, 'rssurl', null), FILTER_VALIDATE_URL);
+$rssurl = filter_var(\Arr::get($enhancer_args, 'rssurl', ''), FILTER_VALIDATE_URL);
 $option = array(
     'options' => array(
         'default' => $modelconfig['item_default'],
@@ -11,8 +11,8 @@ $option = array(
     )
 );
 $num_of_posts = filter_var(\Arr::get($enhancer_args, 'num_of_posts', $modelconfig['item_default']), FILTER_VALIDATE_INT,$option);
-$content = filter_var(\Arr::get($enhancer_args, 'content', null), FILTER_VALIDATE_BOOLEAN);
-$date = filter_var(\Arr::get($enhancer_args, 'date', null), FILTER_VALIDATE_BOOLEAN);
+$content = \Arr::get($enhancer_args, 'content', false);
+$date = \Arr::get($enhancer_args, 'date', false);
 ?>
 <div>
     <?= __('RSS url') ?>: <?= \Fuel\Core\Form::input('rssurl', $rssurl, array('size'=>30));?><br />

@@ -21,13 +21,14 @@ class Model_Rss extends \Fuel\Core\Model {
     protected static function get_rssversion() {
         if (static::$rssdata->channel->item[0]) {
             static::$rssversion = 2;
-        } else if ($this->rssdata->item[0]) {
+        } else if (static::$rssdata->item[0]) {
             static::$rssversion = 1;
         } else {
             throw Exception('invalid RSS');
         }
     }
 
+    //print $num_of_posts;
     static function find($enhancer_args) {
         static::get_rss_from_url($enhancer_args['rssurl']);
         static::get_rssversion();
@@ -52,7 +53,7 @@ class Model_Rss extends \Fuel\Core\Model {
             } else {
                 $date_input = $rssitem->item[$i]->children('http://purl.org/dc/elements/1.1/')->date;
                 $dateclass = \DateTime::createFromFormat(\DateTime::W3C, $date_input);
-            }    
+            }
             $datedata = $dateclass->format($config['date_format']);
 
             if ($link) {
