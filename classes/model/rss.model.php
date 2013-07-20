@@ -14,7 +14,7 @@ class Model_Rss extends \Fuel\Core\Model {
         if (filter_var($rssurl, FILTER_VALIDATE_URL)) {
             static::$rssdata = simplexml_load_file($rssurl, null, LIBXML_NOCDATA);
         } else {
-            throw Exception('invalid URL');
+            throw \Exception('invalid URL');
         }
     }
 
@@ -24,7 +24,7 @@ class Model_Rss extends \Fuel\Core\Model {
         } else if (static::$rssdata->item[0]) {
             static::$rssversion = 1;
         } else {
-            throw Exception('invalid RSS');
+            throw \Exception('invalid RSS');
         }
     }
 
